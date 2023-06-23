@@ -363,3 +363,74 @@ def afd_puntoycoma(lexema):
             estado_actual = -1
             return ESTADO_TRAMPA
         return ESTADO_ACEPTADO
+#AFD "*"
+def afd_mult(lexema):
+    estado_actual = 0 
+    for caracter in lexema:
+        if estado_actual == 0 and caracter == '*':
+            estado_actual = 0
+        else:
+            estado_actual = -1
+            return ESTADO_TRAMPA
+        return ESTADO_ACEPTADO
+#AFD "+"
+def afd_suma(lexema):
+    estado_actual = 0 
+    for caracter in lexema:
+        if estado_actual == 0 and caracter == '+':
+            estado_actual = 0
+        else:
+            estado_actual = -1
+            return ESTADO_TRAMPA
+        return ESTADO_ACEPTADO
+#AFD "<"
+def afd_menor(lexema):
+    estado_actual = 0 
+    for caracter in lexema:
+        if estado_actual == 0 and caracter == '<':
+            estado_actual = 0
+        else:
+            estado_actual = -1
+            return ESTADO_TRAMPA
+        return ESTADO_ACEPTADO
+#AFD ">"
+def afd_mayor(lexema):
+    estado_actual = 0 
+    for caracter in lexema:
+        if estado_actual == 0 and caracter == '>':
+            estado_actual = 0
+        else:
+            estado_actual = -1
+            return ESTADO_TRAMPA
+        return ESTADO_ACEPTADO
+#AFD "<="
+def afd_mayorigual(lexema):
+    estado_actual = 0
+    estados_aceptados = [2] 
+    for caracter in lexema:
+        if estado_actual == 0 and caracter == '<':
+            estado_actual = 1
+        elif estado_actual == 1 and caracter == '=':
+            estado actual = 2
+        else:
+            estado_actual = -1
+            return ESTADO_TRAMPA
+        return ESTADO_ACEPTADO
+
+#AFD ">="
+def afd_mayorigual(lexema):
+    estado_actual = 0
+    estados_aceptados = [2] 
+    for caracter in lexema:
+        if estado_actual == 0 and caracter == '>':
+            estado_actual = 1
+        elif estado_actual == 1 and caracter == '=':
+            estado actual = 2
+        else:
+            estado_actual = -1
+            return ESTADO_TRAMPA
+        return ESTADO_ACEPTADO
+
+
+
+
