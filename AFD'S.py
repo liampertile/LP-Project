@@ -1,11 +1,11 @@
-import lexema
+import string
 
 #--------------CONSTANTES-------------------#
 #Pongo las palabras reservadas en una lista
 P_RESERVADAS = ['si','sino','finsi','repetir','hasta','equal','func','finfunc','oprel','opsuma','opmult']
-#Usando el módulo lexema, hago una lista con las caracters de la a hasta la z (minusculas y mayusculas)
-caracterS_lower = list(lexema.ascii_lowercase)
-caracterS_upper = list(lexema.ascii_uppercase)
+#Usando el módulo string, hago una lista con las caracters de la a hasta la z (minusculas y mayusculas)
+caracterS_lower = list(string.ascii_lowercase)
+caracterS_upper = list(string.ascii_uppercase)
 #Creo una lista con los numeros del 0 al 9
 NUMEROS = list(range(10))
 
