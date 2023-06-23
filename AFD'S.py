@@ -290,7 +290,7 @@ def afd_opsuma(lexema):
         return ESTADO_ACEPTADO
 
 #AFD "opmult"   
-def afd_mult(lexema):
+def afd_opmult(lexema):
     estado_actual = 0 
     for caracter in lexema:
         if estado_actual == 0 and caracter == '*':
