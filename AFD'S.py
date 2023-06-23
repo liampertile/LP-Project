@@ -29,7 +29,7 @@ def afd_id(lexema):
         return ESTADO_NO_ACEPTADO
     
     for caracter in lexema:
-        if caracter and primera_caracter in NUMEROS:
+        if caracter and primer_caracter in NUMEROS:
             return ESTADO_TRAMPA
         elif (caracter in LETRAS_lower or caracter in LETRAS_upper or caracter in NUMEROS) and estado_actual == 0:
             primer_caracter = False
@@ -38,6 +38,22 @@ def afd_id(lexema):
             estado_actual = -1
             return ESTADO_TRAMPA
         return ESTADO_ACEPTADO
+
+#AFD NUM
+def afd_num(lexema):
+    estado_actual = 0
+    for caracter in cadena:
+        if caracter in NUMEROS and estado_actual == 0:
+            estado_actual = 0
+        else:
+            estado_actual = -1
+            return ESTADO_TRAMPA
+    if estado_actual == 0:
+        try:
+            value = int(lexema)
+            return ESTADO_ACEPTADO
+        except:
+            return ESTADO_TRAMPA
     
 #AFD "si"
 def afd_si(lexema):
