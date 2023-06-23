@@ -23,7 +23,7 @@ ESTADO_TRAMPA = "ESTADO TRAMPA"
 
 def afd_id(lexema):
     estado_actual = 0
-    primera_caracter = True
+    primer_caracter = True
     
     if lexema in P_RESERVADAS:
         return ESTADO_NO_ACEPTADO
@@ -32,7 +32,7 @@ def afd_id(lexema):
         if caracter and primera_caracter in NUMEROS:
             return ESTADO_TRAMPA
         elif (caracter in LETRAS_lower or caracter in LETRAS_upper or caracter in NUMEROS) and estado_actual == 0:
-            primera_caracter = 1
+            primer_caracter = False
             estado_actual = 0
         else:
             estado_actual = -1
