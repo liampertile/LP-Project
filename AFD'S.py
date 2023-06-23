@@ -290,7 +290,7 @@ def afd_opsuma(lexema):
         return ESTADO_NO_ACEPTADO
 
 #AFD "opmult"   
-def afd_opsuma(lexema):
+def afd_opmult(lexema):
     estado_actual = 0
     estados_aceptados = [6]
     
