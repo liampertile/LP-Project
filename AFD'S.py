@@ -411,7 +411,7 @@ def afd_mayorigual(lexema):
         if estado_actual == 0 and caracter == '<':
             estado_actual = 1
         elif estado_actual == 1 and caracter == '=':
-            estado actual = 2
+            estado_actual = 2
         else:
             estado_actual = -1
             return ESTADO_TRAMPA
@@ -425,7 +425,7 @@ def afd_mayorigual(lexema):
         if estado_actual == 0 and caracter == '>':
             estado_actual = 1
         elif estado_actual == 1 and caracter == '=':
-            estado actual = 2
+            estado_actual = 2
         else:
             estado_actual = -1
             return ESTADO_TRAMPA
