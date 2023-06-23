@@ -31,7 +31,7 @@ def afd_id(lexema):
     for caracter in lexema:
         if caracter and primera_caracter in NUMEROS:
             return ESTADO_TRAMPA
-        elif (caracter in caracterS_lower or caracter in caracterS_upper or caracter in NUMEROS) and estado_actual == 0:
+        elif (caracter in LETRAS_lower or caracter in LETRAS_upper or caracter in NUMEROS) and estado_actual == 0:
             primera_caracter = 1
             estado_actual = 0
         else:
