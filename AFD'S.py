@@ -1,11 +1,11 @@
-import string
+import lexema
 
 #--------------CONSTANTES-------------------#
 #Pongo las palabras reservadas en una lista
 P_RESERVADAS = ['si','sino','finsi','repetir','hasta','equal','func','finfunc','oprel','opsuma','opmult']
-#Usando el módulo string, hago una lista con las caracters de la a hasta la z (minusculas y mayusculas)
-caracterS_lower = list(string.ascii_lowercase)
-caracterS_upper = list(string.ascii_uppercase)
+#Usando el módulo lexema, hago una lista con las caracters de la a hasta la z (minusculas y mayusculas)
+caracterS_lower = list(lexema.ascii_lowercase)
+caracterS_upper = list(lexema.ascii_uppercase)
 #Creo una lista con los numeros del 0 al 9
 NUMEROS = list(range(10))
 
@@ -21,14 +21,14 @@ ESTADO_TRAMPA = "ESTADO TRAMPA"
 
 #AFD ID'S
 
-def afd_id(string):
+def afd_id(lexema):
     estado_actual = 0
     primera_caracter = True
     
-    if string in P_RESERVADAS:
+    if lexema in P_RESERVADAS:
         return ESTADO_NO_ACEPTADO
     
-    for caracter in string:
+    for caracter in lexema:
         if caracter and primera_caracter in NUMEROS:
             return ESTADO_TRAMPA
         elif (caracter in caracterS_lower or caracter in caracterS_upper or caracter in NUMEROS) and estado_actual == 0:
@@ -40,11 +40,11 @@ def afd_id(string):
         return ESTADO_ACEPTADO
     
 #AFD "si"
-def afd_si(string):
+def afd_si(lexema):
     estado_actual = 0
     estados_aceptados =[2]
     
-    for caracter in string:
+    for caracter in lexema:
         if estado_actual == 0 and caracter == 's':
             estado_actual = 1
         elif estado_actual == 1 and caracter == 'si':
@@ -59,11 +59,11 @@ def afd_si(string):
         return ESTADO_NO_ACEPTADO
     
 #AFD "sino"
-def afd_sino(string):
+def afd_sino(lexema):
     estado_actual = 0
     estados_aceptados = [4]
     
-    for caracter in string:
+    for caracter in lexema:
         if estado_actual == 0 and caracter == 's':
             estado_actual = 1
         elif estado_actual == 1 and caracter == 'i':
@@ -82,11 +82,11 @@ def afd_sino(string):
         return ESTADO_NO_ACEPTADO
             
 #AFD "finsi"   
-def afd_finsi(string):
+def afd_finsi(lexema):
     estado_actual = 0
     estados_aceptados = [5]
     
-    for caracter in string:
+    for caracter in lexema:
         if estado_actual == 0 and caracter == 'f':
             estado_actual = 1
         elif estado_actual == 1 and caracter == 'i':
@@ -107,11 +107,11 @@ def afd_finsi(string):
         return ESTADO_NO_ACEPTADO
 
 #AFD "repetir"   
-def afd_repetir(string):
+def afd_repetir(lexema):
     estado_actual = 0
     estados_aceptados = [7]
     
-    for caracter in string:
+    for caracter in lexema:
         if estado_actual == 0 and caracter == 'r':
             estado_actual = 1
         elif estado_actual == 1 and caracter == 'e':
@@ -136,11 +136,11 @@ def afd_repetir(string):
         return ESTADO_NO_ACEPTADO
 
 #AFD "hasta"   
-def afd_hasta(string):
+def afd_hasta(lexema):
     estado_actual = 0
     estados_aceptados = [5]
     
-    for caracter in string:
+    for caracter in lexema:
         if estado_actual == 0 and caracter == 'h':
             estado_actual = 1
         elif estado_actual == 1 and caracter == 'a':
@@ -161,11 +161,11 @@ def afd_hasta(string):
         return ESTADO_NO_ACEPTADO
 
 #AFD "equal"   
-def afd_equal(string):
+def afd_equal(lexema):
     estado_actual = 0
     estados_aceptados = [5]
     
-    for caracter in string:
+    for caracter in lexema:
         if estado_actual == 0 and caracter == 'e':
             estado_actual = 1
         elif estado_actual == 1 and caracter == 'q':
@@ -186,11 +186,11 @@ def afd_equal(string):
         return ESTADO_NO_ACEPTADO
 
 #AFD "func"
-def afd_func(string):
+def afd_func(lexema):
     estado_actual = 0
     estados_aceptados = [4]
     
-    for caracter in string:
+    for caracter in lexema:
         if estado_actual == 0 and caracter == 'f':
             estado_actual = 1
         elif estado_actual == 1 and caracter == 'u':
@@ -209,11 +209,11 @@ def afd_func(string):
         return ESTADO_NO_ACEPTADO
 
 #AFD "finfunc"
-def afd_finfunc(string):
+def afd_finfunc(lexema):
     estado_actual = 0
     estados_aceptados = [7]
     
-    for caracter in string:
+    for caracter in lexema:
         if estado_actual == 0 and caracter == 'f':
             estado_actual = 1
         elif estado_actual == 1 and caracter == 'i':
@@ -238,11 +238,11 @@ def afd_finfunc(string):
         return ESTADO_NO_ACEPTADO
 
 #AFD "oprel"   
-def afd_oprel(string):
+def afd_oprel(lexema):
     estado_actual = 0
     estados_aceptados = [5]
     
-    for caracter in string:
+    for caracter in lexema:
         if estado_actual == 0 and caracter == 'o':
             estado_actual = 1
         elif estado_actual == 1 and caracter == 'p':
@@ -263,11 +263,11 @@ def afd_oprel(string):
         return ESTADO_NO_ACEPTADO
 
 #AFD "opsuma"   
-def afd_opsuma(string):
+def afd_opsuma(lexema):
     estado_actual = 0
     estados_aceptados = [6]
     
-    for caracter in string:
+    for caracter in lexema:
         if estado_actual == 0 and caracter == 'o':
             estado_actual = 1
         elif estado_actual == 1 and caracter == 'p':
@@ -290,11 +290,11 @@ def afd_opsuma(string):
         return ESTADO_NO_ACEPTADO
 
 #AFD "opmult"   
-def afd_opsuma(string):
+def afd_opsuma(lexema):
     estado_actual = 0
     estados_aceptados = [6]
     
-    for caracter in string:
+    for caracter in lexema:
         if estado_actual == 0 and caracter == 'o':
             estado_actual = 1
         elif estado_actual == 1 and caracter == 'p':
@@ -317,9 +317,9 @@ def afd_opsuma(string):
         return ESTADO_NO_ACEPTADO
 
 #AFD "("
-def afd_parentesisIzq(string):
+def afd_parentesisIzq(lexema):
     estado_actual = 0 
-    for caracter in string:
+    for caracter in lexema:
         if estado_actual == 0 and caracter == '(':
             estado_actual = 0
         else:
@@ -328,9 +328,9 @@ def afd_parentesisIzq(string):
         return ESTADO_ACEPTADO
 
 #AFD ")"
-def afd_parentesisDer(string):
+def afd_parentesisDer(lexema):
     estado_actual = 0 
-    for caracter in string:
+    for caracter in lexema:
         if estado_actual == 0 and caracter == ')':
             estado_actual = 0
         else:
@@ -338,9 +338,9 @@ def afd_parentesisDer(string):
             return ESTADO_TRAMPA
         return ESTADO_ACEPTADO
 #AFD ";"
-def afd_puntoycoma(string):
+def afd_puntoycoma(lexema):
     estado_actual = 0 
-    for caracter in string:
+    for caracter in lexema:
         if estado_actual == 0 and caracter == ';':
             estado_actual = 0
         else:
