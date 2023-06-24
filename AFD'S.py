@@ -409,7 +409,7 @@ def lexer(codigofuente):
                     todos_en_estado_trampa = False
             pos_actual += 1
         
-        if len(posibles_tokens) == 0:
+        if posibles_tokens == []:
             print("ERROR:TOKEN NO VALIDO" + lexema)
             
         un_tipo_de_token = posibles_tokens [0]
