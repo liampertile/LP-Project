@@ -14,6 +14,9 @@ NUMEROS = list(range(10))
 ESTADO_ACEPTADO = "ESTADO ACEPTADO"
 ESTADO_NO_ACEPTADO = "ESTADO NO ACEPTADO"
 ESTADO_TRAMPA = "ESTADO TRAMPA"
+TOKENS_POSIBLES = [("TOKEN ID", afd_id),("TOKEN NUM", afd_num),("TOKEN si", afd_si),("TOKEN sino", afd_sino),("TOKEN finsi", afd_finsii),("TOKEN repetir", afd_repetir)
+                   ,("TOKEN hasta", afd_hasta),("TOKEN equal", afd_equal),("TOKEN func", afd_func),("TOKEN finfunc", afd_finfunc),("TOKEN oprel", afd_oprel),("TOKEN opsuma", afd_opsuma),
+                   ("TOKEN opmult", afd_opmult),("TOKEN parentesisIzq", afd_parentesisIzq),("TOKEN parentesisDer", afd_parentesisDer),("TOKEN puntoycoma", afd_puntoycoma),]
 
 #-------------------------------------------#
 
@@ -380,6 +383,41 @@ def afd_mayorigual(lexema):
             return ESTADO_TRAMPA
         return ESTADO_ACEPTADO
 
+def lexer(codigofuente):
+    tokens = []
+    pos_actual = 0
+    while pos_actual < len(codigofuente):
+        while codigofuente[pos_actual].isspace():
+            pos_actual += 1
+        comienzo_lexema = pos_actual
+        posibles_tokens = []
+        posibles_tokens_con_un_caracter_mas = []
+        lexema = ""
+        todos_en_estado_trampa = False #CENTINELA
+        
+        while not todos_en_estado_trampa:
+            lexema = codigofuente[comienzo_lexema:pos_actual + 1]
+            posibles_tokens = posibles_tokens_con_un_caracter_mas
+            posibles_tokens_con_un_caracter_mas = []
+            
+            for (un_tipo_de_token , afd) in TOKENS_POSIBLES:
+                simulacion_afd = afd(lexema)
+                if simulacion_afd == ESTADO_ACEPTADO:
+                    posibles_tokens_con_un_caracter_mas.append(un_tipo_de_token)
+                    todos_en_estado_trampa = False
+                elif simulacion_afd == ESTADO_NO_ACEPTADO:
+                    todos_en_estado_trampa = False
+            pos_actual += 1
+        
+        if len(posibles_tokens) == 0:
+            print("ERROR:TOKEN NO VALIDO" + lexema)
+            
+        un_tipo_de_token = posibles_tokens [0]
 
+        token =(un_tipo_de_token,lexema)
+        tokens.append(token)
+        
+    return tokens
+            
 
 
