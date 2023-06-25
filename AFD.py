@@ -1,65 +1,73 @@
 import string
 
-#--------------CONSTANTES-------------------#
-#Pongo las palabras reservadas en una lista
-P_RESERVADAS = ['si','sino','finsi','repetir','hasta','equal','func','finfunc','oprel','opsuma','opmult']
-#Usando el módulo string, hago una lista con las caracters de la a hasta la z (minusculas y mayusculas)
+# --------------CONSTANTES-------------------#
+# Pongo las palabras reservadas en una lista
+P_RESERVADAS = ['si', 'sino', 'finsi', 'repetir', 'hasta',
+                'equal', 'func', 'finfunc', 'oprel', 'opsuma', 'opmult']
+# Usando el módulo string, hago una lista con las caracters de la a hasta la z (minusculas y mayusculas)
 LETRAS_lower = list(string.ascii_lowercase)
 LETRAS_upper = list(string.ascii_uppercase)
-#Creo una lista con los numeros del 0 al 9
+# Creo una lista con los numeros del 0 al 9
 NUMEROS = list(range(10))
 
-#-------------------------------------------#
+# -------------------------------------------#
 
 ESTADO_ACEPTADO = "ESTADO ACEPTADO"
 ESTADO_NO_ACEPTADO = "ESTADO NO ACEPTADO"
 ESTADO_TRAMPA = "ESTADO TRAMPA"
 
-#-------------------------------------------#
+# -------------------------------------------#
 
-#Automatas para c/token
+# Automatas para c/token
 
-#AFD ID'S
+# AFD ID'S
+
 
 def afd_id(cadena):
     estado_actual = 0
     primer_caracter = True
-    
+
     if cadena in P_RESERVADAS:
         return ESTADO_NO_ACEPTADO
-    
+
     for caracter in cadena:
-        if caracter and primer_caracter in NUMEROS:
+        if (caracter in NUMEROS) and primer_caracter:
             return ESTADO_TRAMPA
         elif (caracter in LETRAS_lower or caracter in LETRAS_upper or caracter in NUMEROS) and estado_actual == 0:
-            primera_letra = 1
-            estado_actual = 0 
+            primer_caracter = False
+            estado_actual = 0
         else:
             estado_actual = -1
             return ESTADO_TRAMPA
         return ESTADO_ACEPTADO
 
-#AFD NUM
+# AFD NUM
+
+
 def afd_num(cadena):
     estado_actual = 0
+    estados_aceptados = [1]
+
     for caracter in cadena:
-        if caracter in NUMEROS and estado_actual == 0:
-            estado_actual = 0
+        if estado_actual == 0 and (caracter in NUMEROS):
+            estado_actual = 1
+        elif estado_actual == 1 and caracter in NUMEROS:
+            estado_actual = 1
         else:
             estado_actual = -1
             return ESTADO_TRAMPA
-    if estado_actual == 0:
-        try:
-            value = int(cadena)
-            return ESTADO_ACEPTADO
-        except:
-            return ESTADO_TRAMPA
-    
-#AFD "si"
+
+    if estado_actual in estados_aceptados:
+        return ESTADO_ACEPTADO
+    else:
+        return ESTADO_TRAMPA
+# AFD "si"
+
+
 def afd_si(cadena):
     estado_actual = 0
-    estados_aceptados =[2]
-    
+    estados_aceptados = [2]
+
     for caracter in cadena:
         if estado_actual == 0 and caracter == 's':
             estado_actual = 1
@@ -68,17 +76,19 @@ def afd_si(cadena):
         else:
             estado_actual = -1
             return ESTADO_TRAMPA
-        
+
     if estado_actual in estados_aceptados:
         return ESTADO_ACEPTADO
     else:
         return ESTADO_NO_ACEPTADO
-    
-#AFD "sino"
+
+# AFD "sino"
+
+
 def afd_sino(cadena):
     estado_actual = 0
     estados_aceptados = [4]
-    
+
     for caracter in cadena:
         if estado_actual == 0 and caracter == 's':
             estado_actual = 1
@@ -91,17 +101,19 @@ def afd_sino(cadena):
         else:
             estado_actual = -1
             return ESTADO_TRAMPA
-        
+
     if estado_actual in estados_aceptados:
         return ESTADO_ACEPTADO
     else:
         return ESTADO_NO_ACEPTADO
-            
-#AFD "finsi"   
+
+# AFD "finsi"
+
+
 def afd_finsi(cadena):
     estado_actual = 0
     estados_aceptados = [5]
-    
+
     for caracter in cadena:
         if estado_actual == 0 and caracter == 'f':
             estado_actual = 1
@@ -116,17 +128,19 @@ def afd_finsi(cadena):
         else:
             estado_actual = -1
             return ESTADO_TRAMPA
-        
+
     if estado_actual in estados_aceptados:
         return ESTADO_ACEPTADO
     else:
         return ESTADO_NO_ACEPTADO
 
-#AFD "repetir"   
+# AFD "repetir"
+
+
 def afd_repetir(cadena):
     estado_actual = 0
     estados_aceptados = [7]
-    
+
     for caracter in cadena:
         if estado_actual == 0 and caracter == 'r':
             estado_actual = 1
@@ -145,17 +159,19 @@ def afd_repetir(cadena):
         else:
             estado_actual = -1
             return ESTADO_TRAMPA
-        
+
     if estado_actual in estados_aceptados:
         return ESTADO_ACEPTADO
     else:
         return ESTADO_NO_ACEPTADO
 
-#AFD "hasta"   
+# AFD "hasta"
+
+
 def afd_hasta(cadena):
     estado_actual = 0
     estados_aceptados = [5]
-    
+
     for caracter in cadena:
         if estado_actual == 0 and caracter == 'h':
             estado_actual = 1
@@ -170,17 +186,19 @@ def afd_hasta(cadena):
         else:
             estado_actual = -1
             return ESTADO_TRAMPA
-        
+
     if estado_actual in estados_aceptados:
         return ESTADO_ACEPTADO
     else:
         return ESTADO_NO_ACEPTADO
 
-#AFD "equal"   
+# AFD "equal"
+
+
 def afd_equal(cadena):
     estado_actual = 0
     estados_aceptados = [5]
-    
+
     for caracter in cadena:
         if estado_actual == 0 and caracter == 'e':
             estado_actual = 1
@@ -195,17 +213,19 @@ def afd_equal(cadena):
         else:
             estado_actual = -1
             return ESTADO_TRAMPA
-        
+
     if estado_actual in estados_aceptados:
         return ESTADO_ACEPTADO
     else:
         return ESTADO_NO_ACEPTADO
 
-#AFD "func"
+# AFD "func"
+
+
 def afd_func(cadena):
     estado_actual = 0
     estados_aceptados = [4]
-    
+
     for caracter in cadena:
         if estado_actual == 0 and caracter == 'f':
             estado_actual = 1
@@ -218,17 +238,19 @@ def afd_func(cadena):
         else:
             estado_actual = -1
             return ESTADO_TRAMPA
-        
+
     if estado_actual in estados_aceptados:
         return ESTADO_ACEPTADO
     else:
         return ESTADO_NO_ACEPTADO
 
-#AFD "finfunc"
+# AFD "finfunc"
+
+
 def afd_finfunc(cadena):
     estado_actual = 0
     estados_aceptados = [7]
-    
+
     for caracter in cadena:
         if estado_actual == 0 and caracter == 'f':
             estado_actual = 1
@@ -247,17 +269,19 @@ def afd_finfunc(cadena):
         else:
             estado_actual = -1
             return ESTADO_TRAMPA
-        
+
     if estado_actual in estados_aceptados:
         return ESTADO_ACEPTADO
     else:
         return ESTADO_NO_ACEPTADO
 
-#AFD "oprel"   
+# AFD "oprel"
+
+
 def afd_oprel(cadena):
     estado_actual = 0
     estados_aceptados = [5]
-    
+
     for caracter in cadena:
         if estado_actual == 0 and caracter == 'o':
             estado_actual = 1
@@ -272,17 +296,19 @@ def afd_oprel(cadena):
         else:
             estado_actual = -1
             return ESTADO_TRAMPA
-        
+
     if estado_actual in estados_aceptados:
         return ESTADO_ACEPTADO
     else:
         return ESTADO_NO_ACEPTADO
 
-#AFD "opsuma"   
+# AFD "opsuma"
+
+
 def afd_opsuma(cadena):
     estado_actual = 0
     estados_aceptados = [6]
-    
+
     for caracter in cadena:
         if estado_actual == 0 and caracter == 'o':
             estado_actual = 1
@@ -299,17 +325,19 @@ def afd_opsuma(cadena):
         else:
             estado_actual = -1
             return ESTADO_TRAMPA
-        
+
     if estado_actual in estados_aceptados:
         return ESTADO_ACEPTADO
     else:
         return ESTADO_NO_ACEPTADO
 
-#AFD "opmult"   
+# AFD "opmult"
+
+
 def afd_opmult(cadena):
     estado_actual = 0
     estados_aceptados = [6]
-    
+
     for caracter in cadena:
         if estado_actual == 0 and caracter == 'o':
             estado_actual = 1
@@ -326,15 +354,17 @@ def afd_opmult(cadena):
         else:
             estado_actual = -1
             return ESTADO_TRAMPA
-        
+
     if estado_actual in estados_aceptados:
         return ESTADO_ACEPTADO
     else:
         return ESTADO_NO_ACEPTADO
 
-#AFD "("
+# AFD "("
+
+
 def afd_parentesisIzq(cadena):
-    estado_actual = 0 
+    estado_actual = 0
     for caracter in cadena:
         if estado_actual == 0 and caracter == '(':
             estado_actual = 0
@@ -343,9 +373,11 @@ def afd_parentesisIzq(cadena):
             return ESTADO_TRAMPA
         return ESTADO_ACEPTADO
 
-#AFD ")"
+# AFD ")"
+
+
 def afd_parentesisDer(cadena):
-    estado_actual = 0 
+    estado_actual = 0
     for caracter in cadena:
         if estado_actual == 0 and caracter == ')':
             estado_actual = 0
@@ -353,9 +385,11 @@ def afd_parentesisDer(cadena):
             estado_actual = -1
             return ESTADO_TRAMPA
         return ESTADO_ACEPTADO
-#AFD ";"
+# AFD ";"
+
+
 def afd_puntoycoma(cadena):
-    estado_actual = 0 
+    estado_actual = 0
     for caracter in cadena:
         if estado_actual == 0 and caracter == ';':
             estado_actual = 0
