@@ -363,5 +363,3 @@ def afd_puntoycoma(cadena):
             estado_actual = -1
             return ESTADO_TRAMPA
         return ESTADO_ACEPTADO
-
-print(type(cadena))

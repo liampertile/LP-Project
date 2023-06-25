@@ -9,14 +9,14 @@ TOKENS_POSIBLES = [("TOKEN ID", afd_id),("TOKEN NUM", afd_num),("TOKEN si", afd_
 
 tokens = []
 
-#strings que terminen en estado trampa
+#cadenas que terminen en estado trampa
 
-def caeEnTrampa(string):
+def caeEnTrampa(cadena):
     todosCaen = True
     
-    #Corro el string
+    #Corro el cadena
     for (tipoToken,afd) in TOKENS_POSIBLES:
-        resultado = afd(string)
+        resultado = afd(cadena)
         #Si queda en No aceptado o aceptado
         if resultado == (ESTADO_ACEPTADO or ESTADO_NO_ACEPTADO):
             todosCaen = False
@@ -24,18 +24,18 @@ def caeEnTrampa(string):
 
     return caeEnTrampa
 
-#guardar el token del strings en la lista "tokens"
+#guardar el token de cadena en la lista "tokens"
 
-def guardarToken(lexema):
+def guardarToken(cadena):
     global tokens
     
-    #Corremos el string en todos los automatas
+    #Corremos el cadena en todos los automatas
     
     for(tipoToken,afd) in TOKENS_POSIBLES:
-        resultado = afd(string)
+        resultado = afd(cadena)
     
         if resultado == (ESTADO_ACEPTADO):
-            tokens.append((tipoToken,string))
+            tokens.append((tipoToken,cadena))
         
         break
 
