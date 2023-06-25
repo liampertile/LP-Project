@@ -77,4 +77,4 @@ def lexer(codigofuente):
         
     return tokens
 
-
+print(lexer("hola"))

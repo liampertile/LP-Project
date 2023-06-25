@@ -21,23 +21,23 @@ ESTADO_TRAMPA = "ESTADO TRAMPA"
 
 #AFD ID'S
 
-def afd_id(cadena):
+def afd_id(string):
     estado_actual = 0
-    estados_aceptados = [1]
+    primer_caracter = True
+    
+    if string in P_RESERVADAS:
+        return ESTADO_NO_ACEPTADO
     
     for caracter in string:
-        if estado_actual == 0 and ((caracter in LETRAS_lower) or (caracter in LETRAS_upper)):
-            estadoActual = 1
-        elif estadoActual == 1 and ((caracter in LETRAS_lower) or (caracter in LETRAS_upper) or (caracter in NUMEROS)):
-            estadoActual = 1
-        else:
-            estadoActual = -1
+        if caracter and primer_caracter in NUMEROS:
             return ESTADO_TRAMPA
-    
-    if estadoActual in estados_aceptados:
+        elif (caracter in LETRAS_lower or caracter in LETRAS_upper or caracter in NUMEROS) and estado_actual == 0:
+            primera_letra = 1
+            estado_actual = 0 
+        else:
+            estado_actual = -1
+            return ESTADO_TRAMPA
         return ESTADO_ACEPTADO
-    else:
-        return ESTADO_NO_ACEPTADO
 
 #AFD NUM
 def afd_num(string):
