@@ -14,7 +14,7 @@ tokens = []
 def caeEnTrampa(string):
     todosCaen = True
     
-    #Corro el lexema
+    #Corro el string
     for (tipoToken,afd) in TOKENS_POSIBLES:
         resultado = afd(string)
         #Si queda en No aceptado o aceptado
