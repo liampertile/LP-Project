@@ -14,7 +14,7 @@ tokens = []
 def caeEnTrampa(cadena):
     todosCaen = True
     
-    #Corro el cadena
+    #Corro la cadena
     for (tipoToken,afd) in TOKENS_POSIBLES:
         resultado = afd(cadena)
         #Si queda en No aceptado o aceptado

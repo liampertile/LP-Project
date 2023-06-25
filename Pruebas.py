@@ -1,3 +1,3 @@
 from Lexer import lexer
 
-print(lexer("id"))
+print(lexer("PONE ACA LA PRUEBA"))
