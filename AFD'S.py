@@ -14,9 +14,6 @@ NUMEROS = list(range(10))
 ESTADO_ACEPTADO = "ESTADO ACEPTADO"
 ESTADO_NO_ACEPTADO = "ESTADO NO ACEPTADO"
 ESTADO_TRAMPA = "ESTADO TRAMPA"
-TOKENS_POSIBLES = [("TOKEN ID", afd_id),("TOKEN NUM", afd_num),("TOKEN si", afd_si),("TOKEN sino", afd_sino),("TOKEN finsi", afd_finsii),("TOKEN repetir", afd_repetir)
-                   ,("TOKEN hasta", afd_hasta),("TOKEN equal", afd_equal),("TOKEN func", afd_func),("TOKEN finfunc", afd_finfunc),("TOKEN oprel", afd_oprel),("TOKEN opsuma", afd_opsuma),
-                   ("TOKEN opmult", afd_opmult),("TOKEN parentesisIzq", afd_parentesisIzq),("TOKEN parentesisDer", afd_parentesisDer),("TOKEN puntoycoma", afd_puntoycoma),]
 
 #-------------------------------------------#
 
@@ -45,7 +42,7 @@ def afd_id(lexema):
 #AFD NUM
 def afd_num(lexema):
     estado_actual = 0
-    for caracter in cadena:
+    for caracter in lexema:
         if caracter in NUMEROS and estado_actual == 0:
             estado_actual = 0
         else:
@@ -383,6 +380,11 @@ def afd_mayorigual(lexema):
             return ESTADO_TRAMPA
         return ESTADO_ACEPTADO
 
+#-------------------------------------------#
+TOKENS_POSIBLES = [("TOKEN ID",afd_id),("TOKEN NUM", afd_num),("TOKEN si", afd_si),("TOKEN sino", afd_sino),("TOKEN finsi", afd_finsi),("TOKEN repetir", afd_repetir)
+                   ,("TOKEN hasta", afd_hasta),("TOKEN equal", afd_equal),("TOKEN func", afd_func),("TOKEN finfunc", afd_finfunc),("TOKEN oprel", afd_oprel),("TOKEN opsuma", afd_opsuma),
+                   ("TOKEN opmult", afd_opmult),("TOKEN parentesisIzq", afd_parentesisIzq),("TOKEN parentesisDer", afd_parentesisDer),("TOKEN puntoycoma", afd_puntoycoma),]
+
 def lexer(codigofuente):
     tokens = []
     pos_actual = 0
@@ -404,12 +406,12 @@ def lexer(codigofuente):
                 simulacion_afd = afd(lexema)
                 if simulacion_afd == ESTADO_ACEPTADO:
                     posibles_tokens_con_un_caracter_mas.append(un_tipo_de_token)
-                    todos_en_estado_trampa = False
+                    todos_en_estado_trampa = True
                 elif simulacion_afd == ESTADO_NO_ACEPTADO:
                     todos_en_estado_trampa = False
             pos_actual += 1
         
-        if posibles_tokens == []:
+        if len(posibles_tokens) == 0:
             print("ERROR:TOKEN NO VALIDO" + lexema)
             
         un_tipo_de_token = posibles_tokens [0]
@@ -418,6 +420,5 @@ def lexer(codigofuente):
         tokens.append(token)
         
     return tokens
-            
 
 
