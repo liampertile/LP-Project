@@ -3,7 +3,7 @@
 from AFD import *
 
 #Duplas
-TOKENS_POSIBLES = [("TOKEN ID", afd_id),("TOKEN NUM", afd_num),("TOKEN si", afd_si),("TOKEN sino", afd_sino),("TOKEN finsi", afd_finsii),("TOKEN repetir", afd_repetir)
+TOKENS_POSIBLES = [("TOKEN ID", afd_id),("TOKEN NUM", afd_num),("TOKEN si", afd_si),("TOKEN sino", afd_sino),("TOKEN finsi", afd_finsi),("TOKEN repetir", afd_repetir)
                    ,("TOKEN hasta", afd_hasta),("TOKEN equal", afd_equal),("TOKEN func", afd_func),("TOKEN finfunc", afd_finfunc),("TOKEN oprel", afd_oprel),("TOKEN opsuma", afd_opsuma),
                    ("TOKEN opmult", afd_opmult),("TOKEN parentesisIzq", afd_parentesisIzq),("TOKEN parentesisDer", afd_parentesisDer),("TOKEN puntoycoma", afd_puntoycoma),]
 
@@ -43,7 +43,7 @@ def lexer(codigofuente):
     codigofuente += ""
     global tokens
     tokens =[]
-    tokens_posi =[]
+    tokensErroneos =[]
     inicio = 0
     final = 0
     
@@ -65,7 +65,7 @@ def lexer(codigofuente):
         guardarToken(codigofuente[inicio:final])
         
         if inicio == final:
-            tokens_posi.append(codigofuente[inicio])
+            tokensErroneos.append(codigofuente[inicio])
             inicio += 1
             final += 2
         else:
@@ -75,8 +75,7 @@ def lexer(codigofuente):
         if final == len(codigofuente):
             break
         
-print("TOKENS ERRONEOS:" + str(tokens_posi))
-return tokens
+    return tokens
 
         
 
