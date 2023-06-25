@@ -21,14 +21,14 @@ ESTADO_TRAMPA = "ESTADO TRAMPA"
 
 #AFD ID'S
 
-def afd_id(string):
+def afd_id(cadena):
     estado_actual = 0
     primer_caracter = True
     
-    if string in P_RESERVADAS:
+    if cadena in P_RESERVADAS:
         return ESTADO_NO_ACEPTADO
     
-    for caracter in string:
+    for caracter in cadena:
         if caracter and primer_caracter in NUMEROS:
             return ESTADO_TRAMPA
         elif (caracter in LETRAS_lower or caracter in LETRAS_upper or caracter in NUMEROS) and estado_actual == 0:
@@ -40,9 +40,9 @@ def afd_id(string):
         return ESTADO_ACEPTADO
 
 #AFD NUM
-def afd_num(string):
+def afd_num(cadena):
     estado_actual = 0
-    for caracter in string:
+    for caracter in cadena:
         if caracter in NUMEROS and estado_actual == 0:
             estado_actual = 0
         else:
@@ -50,17 +50,17 @@ def afd_num(string):
             return ESTADO_TRAMPA
     if estado_actual == 0:
         try:
-            value = int(string)
+            value = int(cadena)
             return ESTADO_ACEPTADO
         except:
             return ESTADO_TRAMPA
     
 #AFD "si"
-def afd_si(string):
+def afd_si(cadena):
     estado_actual = 0
     estados_aceptados =[2]
     
-    for caracter in string:
+    for caracter in cadena:
         if estado_actual == 0 and caracter == 's':
             estado_actual = 1
         elif estado_actual == 1 and caracter == 'i':
@@ -75,11 +75,11 @@ def afd_si(string):
         return ESTADO_NO_ACEPTADO
     
 #AFD "sino"
-def afd_sino(string):
+def afd_sino(cadena):
     estado_actual = 0
     estados_aceptados = [4]
     
-    for caracter in string:
+    for caracter in cadena:
         if estado_actual == 0 and caracter == 's':
             estado_actual = 1
         elif estado_actual == 1 and caracter == 'i':
@@ -98,11 +98,11 @@ def afd_sino(string):
         return ESTADO_NO_ACEPTADO
             
 #AFD "finsi"   
-def afd_finsi(string):
+def afd_finsi(cadena):
     estado_actual = 0
     estados_aceptados = [5]
     
-    for caracter in string:
+    for caracter in cadena:
         if estado_actual == 0 and caracter == 'f':
             estado_actual = 1
         elif estado_actual == 1 and caracter == 'i':
@@ -123,11 +123,11 @@ def afd_finsi(string):
         return ESTADO_NO_ACEPTADO
 
 #AFD "repetir"   
-def afd_repetir(string):
+def afd_repetir(cadena):
     estado_actual = 0
     estados_aceptados = [7]
     
-    for caracter in string:
+    for caracter in cadena:
         if estado_actual == 0 and caracter == 'r':
             estado_actual = 1
         elif estado_actual == 1 and caracter == 'e':
@@ -152,11 +152,11 @@ def afd_repetir(string):
         return ESTADO_NO_ACEPTADO
 
 #AFD "hasta"   
-def afd_hasta(string):
+def afd_hasta(cadena):
     estado_actual = 0
     estados_aceptados = [5]
     
-    for caracter in string:
+    for caracter in cadena:
         if estado_actual == 0 and caracter == 'h':
             estado_actual = 1
         elif estado_actual == 1 and caracter == 'a':
@@ -177,11 +177,11 @@ def afd_hasta(string):
         return ESTADO_NO_ACEPTADO
 
 #AFD "equal"   
-def afd_equal(string):
+def afd_equal(cadena):
     estado_actual = 0
     estados_aceptados = [5]
     
-    for caracter in string:
+    for caracter in cadena:
         if estado_actual == 0 and caracter == 'e':
             estado_actual = 1
         elif estado_actual == 1 and caracter == 'q':
@@ -202,11 +202,11 @@ def afd_equal(string):
         return ESTADO_NO_ACEPTADO
 
 #AFD "func"
-def afd_func(string):
+def afd_func(cadena):
     estado_actual = 0
     estados_aceptados = [4]
     
-    for caracter in string:
+    for caracter in cadena:
         if estado_actual == 0 and caracter == 'f':
             estado_actual = 1
         elif estado_actual == 1 and caracter == 'u':
@@ -225,11 +225,11 @@ def afd_func(string):
         return ESTADO_NO_ACEPTADO
 
 #AFD "finfunc"
-def afd_finfunc(string):
+def afd_finfunc(cadena):
     estado_actual = 0
     estados_aceptados = [7]
     
-    for caracter in string:
+    for caracter in cadena:
         if estado_actual == 0 and caracter == 'f':
             estado_actual = 1
         elif estado_actual == 1 and caracter == 'i':
@@ -254,11 +254,11 @@ def afd_finfunc(string):
         return ESTADO_NO_ACEPTADO
 
 #AFD "oprel"   
-def afd_oprel(string):
+def afd_oprel(cadena):
     estado_actual = 0
     estados_aceptados = [5]
     
-    for caracter in string:
+    for caracter in cadena:
         if estado_actual == 0 and caracter == 'o':
             estado_actual = 1
         elif estado_actual == 1 and caracter == 'p':
@@ -279,11 +279,11 @@ def afd_oprel(string):
         return ESTADO_NO_ACEPTADO
 
 #AFD "opsuma"   
-def afd_opsuma(string):
+def afd_opsuma(cadena):
     estado_actual = 0
     estados_aceptados = [6]
     
-    for caracter in string:
+    for caracter in cadena:
         if estado_actual == 0 and caracter == 'o':
             estado_actual = 1
         elif estado_actual == 1 and caracter == 'p':
@@ -306,11 +306,11 @@ def afd_opsuma(string):
         return ESTADO_NO_ACEPTADO
 
 #AFD "opmult"   
-def afd_opmult(string):
+def afd_opmult(cadena):
     estado_actual = 0
     estados_aceptados = [6]
     
-    for caracter in string:
+    for caracter in cadena:
         if estado_actual == 0 and caracter == 'o':
             estado_actual = 1
         elif estado_actual == 1 and caracter == 'p':
@@ -333,9 +333,9 @@ def afd_opmult(string):
         return ESTADO_NO_ACEPTADO
 
 #AFD "("
-def afd_parentesisIzq(string):
+def afd_parentesisIzq(cadena):
     estado_actual = 0 
-    for caracter in string:
+    for caracter in cadena:
         if estado_actual == 0 and caracter == '(':
             estado_actual = 0
         else:
@@ -344,9 +344,9 @@ def afd_parentesisIzq(string):
         return ESTADO_ACEPTADO
 
 #AFD ")"
-def afd_parentesisDer(string):
+def afd_parentesisDer(cadena):
     estado_actual = 0 
-    for caracter in string:
+    for caracter in cadena:
         if estado_actual == 0 and caracter == ')':
             estado_actual = 0
         else:
@@ -354,9 +354,9 @@ def afd_parentesisDer(string):
             return ESTADO_TRAMPA
         return ESTADO_ACEPTADO
 #AFD ";"
-def afd_puntoycoma(string):
+def afd_puntoycoma(cadena):
     estado_actual = 0 
-    for caracter in string:
+    for caracter in cadena:
         if estado_actual == 0 and caracter == ';':
             estado_actual = 0
         else:
@@ -364,3 +364,4 @@ def afd_puntoycoma(string):
             return ESTADO_TRAMPA
         return ESTADO_ACEPTADO
 
+print(type(cadena))

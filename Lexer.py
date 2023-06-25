@@ -76,5 +76,3 @@ def lexer(codigofuente):
             break
         
     return tokens
-
-print(lexer("hola"))
