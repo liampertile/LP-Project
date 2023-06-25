@@ -63,7 +63,7 @@ def afd_si(string):
     for caracter in string:
         if estado_actual == 0 and caracter == 's':
             estado_actual = 1
-        elif estado_actual == 1 and caracter == 'si':
+        elif estado_actual == 1 and caracter == 'i':
             estado_actual = 2
         else:
             estado_actual = -1
