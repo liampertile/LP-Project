@@ -27,6 +27,7 @@ def caeEnTrampa(cadena):
 # guardar el token de cadena en la lista "tokens"
 
 
+"""
 def guardarToken(cadena):
     global tokens
 
@@ -34,21 +35,23 @@ def guardarToken(cadena):
 
     for (tipoToken, afd) in TOKENS_POSIBLES:
         resultado = afd(cadena)
-
         if resultado == (ESTADO_ACEPTADO):
-            tokens.append((tipoToken, cadena))
+            tokens_posibles_caracter_extra.append(tipoToken)
 
         break
+"""
 
 
 def lexer(codigofuente):
-    codigofuente += ""
+    # codigofuente += ""
     global tokens
     tokens = []
-    tokensErroneos = []
+    # tokensErroneos = []
     inicio = 0
     final = 1
-
+    posiblesTokens = []
+    lexema = ""
+    tokens_posibles_caracter_extra = []
     while final <= len(codigofuente):
         while codigofuente[inicio].isspace():
             inicio += 1
@@ -57,27 +60,36 @@ def lexer(codigofuente):
             if inicio == len(codigofuente):
                 break
         lexema = codigofuente[inicio: final]
-
         # cuando no se generen estados trampas en los afd le seguimos metiendo caracteres
         while not caeEnTrampa(lexema):
             final += 1
             lexema = codigofuente[inicio:final]
-
-        final -= 1
-        guardarToken(codigofuente[inicio:final])
+            posiblesTokens = tokens_posibles_caracter_extra
+            tokens_posibles_caracter_extra = []
+            for (tipoToken, afd) in TOKENS_POSIBLES:
+                resultado = afd(lexema)
+                if resultado == (ESTADO_ACEPTADO):
+                    tokens_posibles_caracter_extra.append(tipoToken)
+                    todosCaen = False
+                elif resultado == (ESTADO_NO_ACEPTADO):
+                    todosCaen = False
+                break
 
         if inicio == final:
-            tokensErroneos.append(codigofuente[inicio])
+            tokens_posibles_caracter_extra.append(codigofuente[inicio])
             inicio += 1
             final += 2
         else:
             inicio = final
             final = inicio + 1
 
-        if final == len(codigofuente):
+        if final == len(codigofuente)+1:
             break
 
+    tipoToken = posiblesTokens
+    token = (tipoToken, lexema)
+    tokens.append(token)
     return tokens
 
 
-print(lexer("Codigo"))
+print(lexer("cadena"))

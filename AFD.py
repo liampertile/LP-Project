@@ -3,12 +3,13 @@ import string
 # --------------CONSTANTES-------------------#
 # Pongo las palabras reservadas en una lista
 P_RESERVADAS = ['si', 'sino', 'finsi', 'repetir', 'hasta',
-                'equal', 'func', 'finfunc', 'oprel', 'opsuma', 'opmult']
+                'equal', 'func', 'finfunc', 'oprel', 'opsuma', 'opmult', 'leer']
 # Usando el módulo string, hago una lista con las caracters de la a hasta la z (minusculas y mayusculas)
 LETRAS_lower = list(string.ascii_lowercase)
 LETRAS_upper = list(string.ascii_uppercase)
 # Creo una lista con los numeros del 0 al 9
 NUMEROS = list(range(10))
+NUMEROS = list(map(str, NUMEROS))
 
 # -------------------------------------------#
 
@@ -49,7 +50,7 @@ def afd_num(cadena):
     estados_aceptados = [1]
 
     for caracter in cadena:
-        if estado_actual == 0 and (caracter in NUMEROS):
+        if estado_actual == 0 and caracter in NUMEROS:
             estado_actual = 1
         elif estado_actual == 1 and caracter in NUMEROS:
             estado_actual = 1
@@ -397,3 +398,28 @@ def afd_puntoycoma(cadena):
             estado_actual = -1
             return ESTADO_TRAMPA
         return ESTADO_ACEPTADO
+
+# AFD "leer"
+
+
+def afd_leer(cadena):
+    estado_actual = 0
+    estados_aceptados = [4]
+
+    for caracter in cadena:
+        if estado_actual == 0 and caracter == 'l':
+            estado_actual = 1
+        elif estado_actual == 1 and caracter == 'e':
+            estado_actual = 2
+        elif estado_actual == 2 and caracter == 'e':
+            estado_actual = 3
+        elif estado_actual == 3 and caracter == 'r':
+            estado_actual = 4
+        else:
+            estado_actual = -1
+            return ESTADO_TRAMPA
+
+    if estado_actual in estados_aceptados:
+        return ESTADO_ACEPTADO
+    else:
+        return ESTADO_NO_ACEPTADO
