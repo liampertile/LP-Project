@@ -1,7 +1,7 @@
 from AFD import *
 
 TOKENS_POSIBLES = [("TOKEN leer", afd_leer),  ("TOKEN NUM", afd_num), ("TOKEN si", afd_si), ("TOKEN sino", afd_sino), ("TOKEN finsi", afd_finsi), ("TOKEN repetir", afd_repetir), ("TOKEN hasta", afd_hasta), ("TOKEN equal", afd_equal), ("TOKEN func", afd_func),
-                   ("TOKEN finfunc", afd_finfunc), ("TOKEN oprel", afd_oprel), ("TOKEN opsuma", afd_opsuma), ("TOKEN opmult", afd_opmult), ("TOKEN parentesisIzq", afd_parentesisIzq), ("TOKEN parentesisDer", afd_parentesisDer), ("TOKEN puntoycoma", afd_puntoycoma),("TOKEN ID", afd_id)] # Colocamos el TOKEN ID en último lugar para darle precedencia a palabras reservadas
+                   ("TOKEN finfunc", afd_finfunc), ("TOKEN menor", afd_menor),("TOKEN menorigual", afd_menorigual),("TOKEN mayor", afd_mayor),("TOKEN mayorigual", afd_mayorigual),("TOKEN igual", afd_igual),("TOKEN distinto", afd_distinto),("TOKEN suma", afd_suma), ("TOKEN resta", afd_resta), ("TOKEN mult", afd_mult),("TOKEN div", afd_div), ("TOKEN parentesisIzq", afd_parentesisIzq), ("TOKEN parentesisDer", afd_parentesisDer), ("TOKEN puntoycoma", afd_puntoycoma),("TOKEN ID", afd_id)] # Colocamos el TOKEN ID en último lugar para darle precedencia a palabras reservadas
 
 tokens = []
 tokensErroneos = []
@@ -14,10 +14,10 @@ def caeEnTrampa(cadena, posibles_tokens_con_un_caracter_mas): # agregamos el par
         # if resultado == ESTADO_ACEPTADO or resultado == ESTADO_NO_ACEPTADO:
         #     return False
         # Cambiando por esto, en cada recorrido detecta los tipos de tokens aceptados con un carácter más
-        if resultado == Estado_Final:
+        if resultado == ESTADO_ACEPTADO:
             posibles_tokens_con_un_caracter_mas.append(tipoToken))
             return False
-        else resultado == Estado_No_Final:
+        else resultado == ESTADO_NO_ACEPTADO:
             return False
     return True
 
