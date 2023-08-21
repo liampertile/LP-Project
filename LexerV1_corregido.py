@@ -37,9 +37,10 @@ def caeEnTrampa(cadena, posibles_tokens_con_un_caracter_mas): # agregamos el par
         #     return False
         # Cambiando por esto, en cada recorrido detecta los tipos de tokens aceptados con un carácter más
         if resultado == ESTADO_ACEPTADO:
-            posibles_tokens_con_un_caracter_mas.append(tipoToken))
+            posibles_tokens_con_un_caracter_mas.append(tipoToken)
             return False
-        else resultado == ESTADO_NO_ACEPTADO:
+        else:
+            resultado == ESTADO_NO_ACEPTADO
             return False
     return True
 
