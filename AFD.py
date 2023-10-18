@@ -44,20 +44,17 @@ def afd_id(cadena):
 
 # AFD NUM
 
-
 def afd_num(cadena):
     estado_actual = 0
-    estados_aceptados = [1]
 
     for caracter in cadena:
         if estado_actual == 0 and caracter in NUMEROS:
-            estado_actual = 1
+            estado_actual = 0
         else:
             estado_actual = -1
             return ESTADO_TRAMPA
+    return ESTADO_ACEPTADO
 
-    if estado_actual in estados_aceptados:
-        return ESTADO_ACEPTADO
 
 # AFD "si"
 
