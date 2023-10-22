@@ -1,7 +1,8 @@
 from LexerV2 import *
 
-VN = ['Program', 'ListaSentencias', 'Sentencia', 'SentenciaSi', 'SentenciaRepetir', 'SentenciaAsig',
-      'SentenciaLeer', 'SentenciaMostrar', 'SentenciaFun', 'Proc', 'ListaPar', 'Expression', 'Expresion2', 'Factor', 'Termino']
+VN = ['Program', 'ListaSentencias', 'ListaSentenciasP', 'Sentencia', 'SentenciaSi', 'SentenciaRepetir', 'SentenciaAsig',
+      'SentenciaLeer', 'SentenciaMostrar', 'SentenciaFun', 'Proc', 'ListaPar', 'ListaParP', 'Expresion', 'Expresion2',
+      'Expresion2P', 'Termino', 'TerminoP', 'Factor']
 
 VT = TOKENS_POSIBLES
 
@@ -40,6 +41,7 @@ tabla = {
     },
     'SentenciaSi': {
         'si': ['si', 'Expresion', 'entonces', 'ListaSentencias', 'sino', 'ListaSentencias', 'finsi'],
+        # preguntar
         'si': ['si', 'Expresion', 'entonces', 'ListaSentencias', 'finsi']
     },
     'SentenciaRepetir': {
@@ -48,7 +50,60 @@ tabla = {
     'SentenciaAsig': {
         'id': ['id', 'equal', 'Expresion']
     },
-
+    'SentenciaLeer': {
+        'leer': ['leer', 'id']
+    },
+    'SentenciaMostrar': {
+        'mostrar': ['mostrar', 'Expresion']
+    },
+    'SentenciaFun': {
+        'func': ['func', 'Proc', 'finfunc']
+    },
+    'Proc': {
+        'id': ['id', '(', 'ListaPar', ')', 'ListaSentencias']
+    },
+    'ListaPar': {
+        'id': ['id', 'ListaParP']
+    },
+    'ListaParP': {
+        ';': [';', 'id', 'ListaParP'],
+        ')': []
+    },
+    'Expresion': {
+        '(': ['Expresion2'],
+        'num': ['Expresion2'],
+        'id': ['Expresion2']
+    },
+    'Expresion2': {
+        '(': ['Termino', 'Expresion2P'],
+        'num': ['Termino', 'Expresion2P'],
+        'id': ['Termino', 'Expresion2P']
+    },
+    'Expresion2P': {
+        'opsuma': ['opsuma', 'Termino', 'Expresion2P'],
+        'oprel': [],
+        '#': [],
+        'entonces': [],
+        ')': []
+    },
+    'Termino': {
+        '(': ['Factor', 'TerminoP'],
+        'num': ['Factor', 'TerminoP'],
+        'id': ['Factor', 'TerminoP']
+    },
+    'TerminoP': {
+        'opmult': ['opmult', 'Factor', 'TerminoP'],
+        'opsuma': [],
+        'oprel': [],
+        '#': [],
+        'entonces': [],
+        ')': []
+    },
+    'Factor': {
+        '(': ['(', 'Expresion', ')'],
+        'num': ['num'],
+        'id': ['id']
+    }
 }
 
 P = {'S': [['Token(', 'S', 'Token)', 'S'],
