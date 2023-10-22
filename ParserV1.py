@@ -15,16 +15,40 @@ tabla = {
         'func': ['ListaSentencias']
     },
     'ListaSentencias': {
-        'si': ['Sentencia'],
-        'repetir': ['Sentencia'],
-        'id': ['Sentencia'],
-        'leer': ['Sentencia'],
-        'mostrar': ['Sentencia'],
-        'func': ['Sentencia']
+        'si': ['Sentencia', 'ListaSnteciasP'],
+        'repetir': ['Sentencia', 'ListaSnteciasP'],
+        'id': ['Sentencia', 'ListaSnteciasP'],
+        'leer': ['Sentencia', 'ListaSnteciasP'],
+        'mostrar': ['Sentencia', 'ListaSnteciasP'],
+        'func': ['Sentencia', 'ListaSnteciasP']
     },
     'ListaSentenciasP': {
+        ';': [';'],
+        '#': [],
+        'sino': [],
+        'finsi': [],
+        'hasta': [],
+        'finfunc': [],
+    },
+    'Sentencia': {
+        'si': ['SentenciaSi'],
+        'repetir': ['SentenciaRepetir'],
+        'id': ['SentenciaAsig'],
+        'leer': ['Sentencialeer'],
+        'mostrar': ['SentenciaMostrar'],
+        'func': ['SentenciaFun']
+    },
+    'SentenciaSi': {
+        'si': ['si', 'Expresion', 'entonces', 'ListaSentencias', 'sino', 'ListaSentencias', 'finsi'],
+        'si': ['si', 'Expresion', 'entonces', 'ListaSentencias', 'finsi']
+    },
+    'SentenciaRepetir': {
+        'repetir': ['repetir', 'ListaSenteicas', 'hasta', 'Expresion']
+    },
+    'SentenciaAsig': {
+        'id': ['id', 'equal', 'Expresion']
+    },
 
-    }
 }
 
 P = {'S': [['Token(', 'S', 'Token)', 'S'],
