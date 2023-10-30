@@ -1,4 +1,4 @@
-from LexerV1_corregido import lexer
+from LexerV2 import lexer
 
 print(lexer("Codigo"))
 print(lexer("juan"))
@@ -17,5 +17,5 @@ print(lexer("juan = 7 y lucia <= 4"))
 print(lexer("var(finsi)"))
 print(lexer("func(x) = x**2"))
 print(lexer("3<>4"))
-print(lexer("repetir 233"))
-
+print(lexer("repetir aux1 equal aux2 hasta aux3"))
+print(lexer("leer 10"))

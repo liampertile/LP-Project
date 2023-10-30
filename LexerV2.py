@@ -49,7 +49,7 @@ def lexer(codigofuente):
 
     tokens = []
     tokensErroneos = []
-    final = 0 
+    final = 0
 
     while final < len(codigofuente):
 
@@ -59,9 +59,7 @@ def lexer(codigofuente):
         posibles_tokens = []
         posibles_tokens_con_un_caracter_mas = []
 
-
         lexema = ''
-
 
         while final <= len(codigofuente) and not caeEnTrampa(lexema, posibles_tokens_con_un_caracter_mas):
 
@@ -69,7 +67,6 @@ def lexer(codigofuente):
             posibles_tokens = posibles_tokens_con_un_caracter_mas
             posibles_tokens_con_un_caracter_mas = []
             final += 1
-
 
         if len(posibles_tokens) == 0:
             print("ERROR: TOKEN DESCONOCIDO" + lexema)
@@ -82,6 +79,5 @@ def lexer(codigofuente):
 
             tokens = guardarToken(
                 codigofuente[inicio:final], tokentipo, tokens)
-
 
     return tokens

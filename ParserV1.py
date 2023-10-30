@@ -4,7 +4,8 @@ VN = ['Program', 'ListaSentencias', 'ListaSentenciasP', 'Sentencia', 'SentenciaS
       'SentenciaLeer', 'SentenciaMostrar', 'SentenciaFun', 'Proc', 'ListaPar', 'ListaParP', 'Expresion', 'Expresion2',
       'Expresion2P', 'Termino', 'TerminoP', 'Factor']
 
-VT = ["TOKEN ID", "TOKEN NUM", "TOKEN si", "TOKEN entonces", "TOKEN sino", "TOKEN finsi", "TOKEN repetir","TOKEN hasta", "TOKEN equal", "TOKEN leer", "TOKEN mostrar", "TOKEN func", "TOKEN finfunc", "TOKEN parentesisIzq", "TOKEN parentesisDer", "TOKEN puntoycoma", "TOKEN oprel", "TOKEN opsuma", "TOKEN opmult"]
+VT = ["TOKEN ID", "TOKEN NUM", "TOKEN si", "TOKEN entonces", "TOKEN sino", "TOKEN finsi", "TOKEN repetir", "TOKEN hasta", "TOKEN equal", "TOKEN leer",
+      "TOKEN mostrar", "TOKEN func", "TOKEN finfunc", "TOKEN parentesisIzq", "TOKEN parentesisDer", "TOKEN puntoycoma", "TOKEN oprel", "TOKEN opsuma", "TOKEN opmult"]
 
 tabla = {
     'Program': {
@@ -29,7 +30,7 @@ tabla = {
         'TOKEN sino': [],
         'TOKEN finsi': [],
         'TOKEN hasta': [],
-        'TOKEN finfunc': [],
+        'TOKEN finfunc': []
     },
     'Sentencia': {
         'TOKEN si': ['SentenciaSi'],
@@ -41,7 +42,7 @@ tabla = {
     },
     'SentenciaSi': {
         'TOKEN si': ['TOKEN si', 'Expresion', 'TOKEN entonces', 'ListaSentencias', 'TOKEN sino', 'ListaSentencias', 'TOKEN finsi'],
-        # preguntar
+        # Esto es correcto?
         'TOKEN si': ['TOKEN si', 'Expresion', 'TOKEN entonces', 'ListaSentencias', 'TOKEN finsi']
     },
     'SentenciaRepetir': {
@@ -106,6 +107,7 @@ tabla = {
     }
 }
 
+
 def traduccionParser(salidaLexer):
     cadena = []
     # Ponemos cada primer elemento de cada tupla (token) en una lista
@@ -115,6 +117,8 @@ def traduccionParser(salidaLexer):
     return cadena
 
 # Función que genera las derivaciones, recibe el elemento a derivar, en que cadena y por que se deriva
+
+
 def genDerivacion(topePila, produccionAnterior, derivacion):
     # Obtenemos en que posición se encuentra el elemento a derivar
     indice = produccionAnterior.index(topePila)
@@ -128,9 +132,8 @@ def genDerivacion(topePila, produccionAnterior, derivacion):
     # Insertamos la lista dada vuelta en la cadena a derivar
     for i in produccionInvertida:
         produccionAnterior.insert(indice, i)
-    
-    return produccionAnterior
 
+    return produccionAnterior
 
 
 # Función principal
@@ -158,14 +161,14 @@ def parser(cadena):
             for i in derivaciones:
                 print(i)
             break
-            
+
         if tope in VT:
             if tope == cadena[simboloApuntado]:
                 # Consumimos el último elemento de la pila
                 pila.pop()
                 # Avanzamos el puntero en un elemento
                 simboloApuntado += 1
-            
+
             # Si no se cumple la condición salimos del ciclo
             else:
                 continuar = False
@@ -188,8 +191,7 @@ def parser(cadena):
                 # El .copy() es necesario porque sino se copian las referencias y tendriamos una lista con 5 elementos iguales
                 derivaciones.append(derivacion.copy())
 
-            # Si hay error salimos del ciclo   
+            # Si hay error salimos del ciclo
             except:
                 continuar = False
                 print("La cadena no pertenece al lenguaje")
-

@@ -3,7 +3,7 @@ import string
 # --------------CONSTANTES-------------------#
 # Pongo las palabras reservadas en una lista
 P_RESERVADAS = ['si', 'sino', 'finsi', 'repetir', 'hasta',
-                'equal', 'func', 'finfunc', 'oprel', 'opsuma', 'opmult', 'leer','mostrar']
+                'equal', 'func', 'finfunc', 'oprel', 'opsuma', 'opmult', 'leer', 'mostrar']
 # Usando el módulo string, hago una lista con las caracters de la a hasta la z (minusculas y mayusculas)
 LETRAS_lower = list(string.ascii_lowercase)
 LETRAS_upper = list(string.ascii_uppercase)
@@ -43,6 +43,7 @@ def afd_id(cadena):
     return ESTADO_ACEPTADO
 
 # AFD NUM
+
 
 def afd_num(cadena):
     estado_actual = 0
@@ -144,14 +145,14 @@ def afd_mostrar(cadena):
         elif estado_actual == 5 and caracter == 'a':
             estado_actual = 6
         elif estado_actual == 6 and caracter == 'r':
-            estado_actual = 7     
+            estado_actual = 7
         else:
             estado_actual = -1
             return ESTADO_TRAMPA
 
     if estado_actual in estados_aceptados:
         return ESTADO_ACEPTADO
-    
+
 # AFD "repetir"
 
 
