@@ -17,6 +17,5 @@ print(lexer("juan = 7 y lucia <= 4"))
 print(lexer("var(finsi)"))
 print(lexer("func(x) = x**2"))
 print(lexer("3<>4"))
+print(lexer("repetir 233"))
 
-
-print(lexer("233"))
