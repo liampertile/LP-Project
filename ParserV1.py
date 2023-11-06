@@ -25,7 +25,7 @@ tabla = {
         'TOKEN func': ['Sentencia', 'ListaSentenciasP']
     },
     'ListaSentenciasP': {
-        'TOKEN puntoycoma': ['TOKEN puntoycoma'],
+        'TOKEN puntoycoma': ['TOKEN puntoycoma','Sentencia','ListaSentenciasP'],
         '#': [],
         'TOKEN sino': [],
         'TOKEN finsi': [],
@@ -41,10 +41,14 @@ tabla = {
         'TOKEN func': ['SentenciaFun']
     },
     'SentenciaSi': {
-        'TOKEN si': ['TOKEN si', 'Expresion', 'TOKEN entonces', 'ListaSentencias', 'TOKEN sino', 'ListaSentencias', 'TOKEN finsi'],
-        # Esto es correcto?
-        'TOKEN si': ['TOKEN si', 'Expresion', 'TOKEN entonces', 'ListaSentencias', 'TOKEN finsi']
+        'TOKEN si': ['TOKEN si', 'Expresion', 'TOKEN entonces', 'ListaSentencias','SentenciaSiP'],
     },
+    
+    'SentenciaSiP' : {
+        'TOKEN sino': ['TOKEN sino', 'ListaSentencias' ,'TOKEN finsi'],
+        'TOKEN finsi': ['TOKEN finsi']
+    },
+    
     'SentenciaRepetir': {
         'TOKEN repetir': ['TOKEN repetir', 'ListaSentencias', 'TOKEN hasta', 'Expresion']
     },
@@ -71,24 +75,45 @@ tabla = {
         'TOKEN parentesisDer': []
     },
     'Expresion': {
-        'TOKEN parentesisDer': ['Expresion2'],
-        'TOKEN NUM': ['Expresion2'],
-        'TOKEN ID': ['Expresion2']
+        'TOKEN parentesisDer': ['Expresion2','ExpresionP'],
+        'TOKEN NUM': ['Expresion2','ExpresionP'],
+        'TOKEN ID': ['Expresion2','ExpresionP']
     },
+    
+    'ExpresionP': {
+        'TOKEN oprel': ['TOKEN oprel','Expresion2'],
+        'TOKEN parentesisDer': [],
+        'TOKEN puntoycoma': [],
+        '#':[],
+        'TOKEN finfunc': [],
+        'TOKEN finsi': [],
+        'TOKEN sino': [],
+        'TOKEN hasta': [],
+        'TOKEN entonces': []
+        
+    },
+    
     'Expresion2': {
         'TOKEN parentesisIzq': ['Termino', 'Expresion2P'],
         'TOKEN NUM': ['Termino', 'Expresion2P'],
         'TOKEN ID': ['Termino', 'Expresion2P']
     },
+    
     'Expresion2P': {
         'TOKEN opsuma': ['TOKEN opsuma', 'Termino', 'Expresion2P'],
         'TOKEN oprel': [],
         '#': [],
         'TOKEN entonces': [],
-        'TOKEN parentesisDer': []
+        'TOKEN parentesisDer': [],
+        'TOKEN puntoycoma': [],
+        'TOKEN finfunc': [],
+        'TOKEN sino': [],
+        'TOKEN hasta': [],
+        'TOKEN entonces': []
     },
+    
     'Termino': {
-        '(': ['Factor', 'TerminoP'],
+        'TOKEN parentesisIzq': ['Factor', 'TerminoP'],
         'TOKEN NUM': ['Factor', 'TerminoP'],
         'TOKEN ID': ['Factor', 'TerminoP']
     },
@@ -98,7 +123,13 @@ tabla = {
         'TOKEN oprel': [],
         '#': [],
         'TOKEN entonces': [],
-        'TOKEN parentesisDer': []
+        'TOKEN parentesisDer': [],
+        'TOKEN sino': [],
+        'TOKEN hasta': [],
+        'TOKEN puntoycoma': [],
+        'TOKEN finsi': [],
+        'TOKEN finfunc': []
+        
     },
     'Factor': {
         'TOKEN parentesisIzq': ['TOKEN parentesisIzq', 'Expresion', 'TOKEN parentesisDer'],
