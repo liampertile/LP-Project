@@ -5,7 +5,7 @@ VN = ['Program', 'ListaSentencias', 'ListaSentenciasP', 'Sentencia', 'SentenciaS
       'Expresion2P', 'Termino', 'TerminoP', 'Factor']
 
 VT = ["TOKEN ID", "TOKEN NUM", "TOKEN si", "TOKEN entonces", "TOKEN sino", "TOKEN finsi", "TOKEN repetir", "TOKEN hasta", "TOKEN equal", "TOKEN leer",
-      "TOKEN mostrar", "TOKEN func", "TOKEN finfunc", "TOKEN parentesisIzq", "TOKEN parentesisDer", "TOKEN puntoycoma", "TOKEN oprel", "TOKEN opsuma", "TOKEN mult"]
+      "TOKEN mostrar", "TOKEN func", "TOKEN finfunc", "TOKEN parentesisIzq", "TOKEN parentesisDer", "TOKEN puntoycoma", "TOKEN oprel", "TOKEN opsuma", "TOKEN opmult"]
 
 tabla = {
     'Program': {
@@ -52,18 +52,23 @@ tabla = {
     'SentenciaRepetir': {
         'TOKEN repetir': ['TOKEN repetir', 'ListaSentencias', 'TOKEN hasta', 'Expresion']
     },
+    
     'SentenciaAsig': {
         'TOKEN ID': ['TOKEN ID', 'TOKEN equal', 'Expresion']
     },
+    
     'SentenciaLeer': {
         'TOKEN leer': ['TOKEN leer', 'TOKEN ID']
     },
+    
     'SentenciaMostrar': {
         'TOKEN mostrar': ['TOKEN mostrar', 'Expresion']
     },
+    
     'SentenciaFun': {
         'TOKEN func': ['TOKEN func', 'Proc', 'TOKEN finfunc']
     },
+    
     'Proc': {
         'TOKEN ID': ['TOKEN ID', 'TOKEN parentesisIzq', 'ListaPar', 'TOKEN parentesisDer', 'ListaSentencias']
     },
@@ -117,8 +122,9 @@ tabla = {
         'TOKEN NUM': ['Factor', 'TerminoP'],
         'TOKEN ID': ['Factor', 'TerminoP']
     },
+    
     'TerminoP': {
-        'TOKEN mult': ['TOKEN mult', 'Factor', 'TerminoP'],
+        'TOKEN opmult': ['TOKEN opmult', 'Factor', 'TerminoP'],
         'TOKEN opsuma': [],
         'TOKEN oprel': [],
         'TOKEN parentesisDer'
@@ -131,6 +137,7 @@ tabla = {
         'TOKEN entonces': []
         
     },
+    
     'Factor': {
         'TOKEN parentesisIzq': ['TOKEN parentesisIzq', 'Expresion', 'TOKEN parentesisDer'],
         'TOKEN NUM': ['TOKEN NUM'],
