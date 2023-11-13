@@ -1,5 +1,5 @@
-from LexerV2 import lexer
-from ParserV1 import traduccionParser, parser
+from Lexer import lexer
+from Parser import traduccionParser, parser
 
 # Pruebas:
 #parser(traduccionParser(lexer("leer var")))

@@ -1,4 +1,4 @@
-from LexerV2 import lexer
+from Lexer import lexer
 
 print(lexer("Codigo"))
 print(lexer("juan"))

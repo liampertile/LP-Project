@@ -1,4 +1,4 @@
-from LexerV2 import *
+from Lexer import *
 
 VN = ['Program', 'ListaSentencias', 'ListaSentenciasP', 'Sentencia', 'SentenciaSi', 'SentenciaRepetir', 'SentenciaAsig',
       'SentenciaLeer', 'SentenciaMostrar', 'SentenciaFun', 'Proc', 'ListaPar', 'ListaParP', 'Expresion', 'Expresion2',
