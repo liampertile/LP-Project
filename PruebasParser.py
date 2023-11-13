@@ -9,3 +9,4 @@ from ParserV1 import traduccionParser, parser
 #parser(traduccionParser(lexer("mostrar 5")))
 #parser(traduccionParser(lexer("repetir mostrar 3 hasta aux3")))
 parser(traduccionParser(lexer("si 5>5 entonces mostrar x+6 finsi")))
+parser(traduccionParser(lexer("mostrar x+3")))

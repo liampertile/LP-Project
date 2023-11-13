@@ -108,7 +108,7 @@ tabla = {
         'TOKEN opsuma': ['TOKEN opsuma', 'Termino', 'Expresion2P'],
         'TOKEN oprel': [],
         '#': [],
-        'TOKEN entonces': [],
+        'TOKEN finsi': [],
         'TOKEN parentesisDer': [],
         'TOKEN puntoycoma': [],
         'TOKEN finfunc': [],
@@ -127,7 +127,7 @@ tabla = {
         'TOKEN opmult': ['TOKEN opmult', 'Factor', 'TerminoP'],
         'TOKEN opsuma': [],
         'TOKEN oprel': [],
-        'TOKEN parentesisDer'
+        'TOKEN parentesisDer' : [],
         '#': [],
         'TOKEN puntoycoma': [],
         'TOKEN finfunc': [],
